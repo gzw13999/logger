@@ -9,7 +9,6 @@ import (
 )
 
 func StartLogger() {
-
 	// 打开日志文件
 	//	file, err := os.OpenFile("./"+config.Cfg.Log.Runfile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	//	if err != nil {
