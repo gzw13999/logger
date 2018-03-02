@@ -1,2 +1,2 @@
 # logger
-golang logger
+golang logger.
