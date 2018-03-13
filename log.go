@@ -120,7 +120,11 @@ func Run(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			runlog = log.New(runlogfile, newline, log.LstdFlags)
+			var r Repeater
+			r.out1 = os.Stdout
+			r.out2 = runlogfile
+			//			runlog.SetOutput(&r)
+			runlog = log.New(&r, newline, log.LstdFlags)
 		}
 	}
 
@@ -132,9 +136,13 @@ func Run(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			runlog = log.New(runlogfile, newline, log.LstdFlags)
+			var r Repeater
+			r.out1 = os.Stdout
+			r.out2 = runlogfile
+			runlog = log.New(&r, newline, log.LstdFlags)
 		}
 	}
+
 	runlog.Output(3, fmt.Sprintln(args...))
 }
 
@@ -160,8 +168,16 @@ func Debug(args ...interface{}) {
 			debuglog = log.New(debuglogfile, newline, log.LstdFlags)
 		}
 	}
-
-	debuglog.Output(3, fmt.Sprintln(args...))
+	stacktraceStr := ""
+	for i := 0; i < 10; i++ {
+		funcName, file, line, ok := runtime.Caller(i)
+		if ok {
+			stacktraceStr = fmt.Sprintf("%v:%v\n\tfile:%v:%v]\n", i, runtime.FuncForPC(funcName).Name(), file, line)
+		} else {
+			break
+		}
+	}
+	debuglog.Output(3, fmt.Sprintln(args...)+"\n"+stacktraceStr)
 }
 
 func Info(args ...interface{}) {
@@ -186,6 +202,7 @@ func Info(args ...interface{}) {
 			infolog = log.New(infologfile, newline, log.LstdFlags)
 		}
 	}
+
 	infolog.Output(3, fmt.Sprintln(args...))
 }
 
@@ -212,5 +229,15 @@ func Error(args ...interface{}) {
 		}
 	}
 
-	errlog.Output(3, fmt.Sprintln(args...))
+	//	stacktraceStr := ""
+	//	for i := 0; i < 10; i++ {
+	//		funcName, file, line, ok := runtime.Caller(i)
+	//		if ok {
+	//			stacktraceStr = fmt.Sprintf("%v:%v\n\tfile:%v:%v]\n", i, runtime.FuncForPC(funcName).Name(), file, line)
+	//		} else {
+	//			break
+	//		}
+	//	}
+
+	errlog.Output(0, fmt.Sprintln(args...)+takeStacktrace())
 }
