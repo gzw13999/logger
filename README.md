@@ -15,7 +15,6 @@ golang logger.
     func main() {
 		logger.LogInit("./logs")
 		
-		logger.LogInit("./logs")
 		logger.Run("run", "run", 1)
 		logger.Error("err message")
 		...
