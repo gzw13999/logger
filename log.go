@@ -8,26 +8,6 @@ import (
 	"time"
 )
 
-func StartLogger() {
-	// 打开日志文件
-	//	file, err := os.OpenFile("./"+config.Cfg.Log.Runfile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
-	//	if err != nil {
-	//		log.Println("cannot open logfile %v\n", err)
-	//	}
-
-	//	// 创建MUX
-	//	var r Repeater
-
-	//	switch config.Cfg.Log.Output {
-	//	case "both":
-	//		r.out1 = os.Stdout
-	//		r.out2 = file
-	//	case "file":
-	//		r.out2 = file
-	//	}
-	//	log.SetOutput(&r)
-}
-
 var (
 	runlog       *log.Logger
 	debuglog     *log.Logger
@@ -41,15 +21,6 @@ var (
 	logpath      string
 	date         time.Time
 )
-
-//func init() {
-
-//	if runtime.GOOS == "windows" {
-//		newline = "\r\n"
-//	} else {
-//		newline = ""
-//	}
-//}
 
 func LogInit(path string) {
 
@@ -168,16 +139,8 @@ func Debug(args ...interface{}) {
 			debuglog = log.New(debuglogfile, newline, log.LstdFlags)
 		}
 	}
-	stacktraceStr := ""
-	for i := 0; i < 10; i++ {
-		funcName, file, line, ok := runtime.Caller(i)
-		if ok {
-			stacktraceStr = fmt.Sprintf("%v:%v\n\tfile:%v:%v]\n", i, runtime.FuncForPC(funcName).Name(), file, line)
-		} else {
-			break
-		}
-	}
-	debuglog.Output(3, fmt.Sprintln(args...)+"\n"+stacktraceStr)
+
+	debuglog.Output(3, fmt.Sprintln(args...)+takeStacktrace())
 }
 
 func Info(args ...interface{}) {
@@ -228,16 +191,6 @@ func Error(args ...interface{}) {
 			errlog = log.New(errlogfile, newline, log.LstdFlags)
 		}
 	}
-
-	//	stacktraceStr := ""
-	//	for i := 0; i < 10; i++ {
-	//		funcName, file, line, ok := runtime.Caller(i)
-	//		if ok {
-	//			stacktraceStr = fmt.Sprintf("%v:%v\n\tfile:%v:%v]\n", i, runtime.FuncForPC(funcName).Name(), file, line)
-	//		} else {
-	//			break
-	//		}
-	//	}
 
 	errlog.Output(0, fmt.Sprintln(args...)+takeStacktrace())
 }
