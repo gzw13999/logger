@@ -87,7 +87,7 @@ func Run(args ...interface{}) {
 
 	if runlog == nil {
 		var err error
-		if runlogfile, err = os.OpenFile(fmt.Sprintf("%v/run/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if runlogfile, err = os.OpenFile(fmt.Sprintf("%v/run/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -103,7 +103,7 @@ func Run(args ...interface{}) {
 		if err := runlogfile.Close(); err != nil {
 		}
 		var err error
-		if runlogfile, err = os.OpenFile(fmt.Sprintf("%v/run/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if runlogfile, err = os.OpenFile(fmt.Sprintf("%v/run/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -120,7 +120,7 @@ func Run(args ...interface{}) {
 func Debug(args ...interface{}) {
 	if debuglog == nil {
 		var err error
-		if debuglogfile, err = os.OpenFile(fmt.Sprintf("%v/debug/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if debuglogfile, err = os.OpenFile(fmt.Sprintf("%v/debug/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -132,7 +132,7 @@ func Debug(args ...interface{}) {
 		if err := debuglogfile.Close(); err != nil {
 		}
 		var err error
-		if debuglogfile, err = os.OpenFile(fmt.Sprintf("%v/debug/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if debuglogfile, err = os.OpenFile(fmt.Sprintf("%v/debug/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -146,7 +146,7 @@ func Debug(args ...interface{}) {
 func Info(args ...interface{}) {
 	if infolog == nil {
 		var err error
-		if infologfile, err = os.OpenFile(fmt.Sprintf("%v/info/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if infologfile, err = os.OpenFile(fmt.Sprintf("%v/info/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -158,7 +158,7 @@ func Info(args ...interface{}) {
 		if err := infologfile.Close(); err != nil {
 		}
 		var err error
-		if infologfile, err = os.OpenFile(fmt.Sprintf("%v/info/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if infologfile, err = os.OpenFile(fmt.Sprintf("%v/info/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -172,7 +172,7 @@ func Info(args ...interface{}) {
 func Error(args ...interface{}) {
 	if errlog == nil {
 		var err error
-		if errlogfile, err = os.OpenFile(fmt.Sprintf("%v/error/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if errlogfile, err = os.OpenFile(fmt.Sprintf("%v/error/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
@@ -184,7 +184,7 @@ func Error(args ...interface{}) {
 		if err := errlogfile.Close(); err != nil {
 		}
 		var err error
-		if errlogfile, err = os.OpenFile(fmt.Sprintf("%v/error/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0); err != nil {
+		if errlogfile, err = os.OpenFile(fmt.Sprintf("%v/error/%v.log", logpath, time.Now().Format("2006-01-02")), os.O_APPEND|os.O_WRONLY|os.O_CREATE|os.O_SYNC, 0777); err != nil {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
