@@ -140,7 +140,7 @@ func Debug(args ...interface{}) {
 		}
 	}
 
-	debuglog.Output(3, fmt.Sprintln(args...)+takeStacktrace())
+	debuglog.Output(3, fmt.Sprintln(args...)+TakeStacktrace())
 }
 
 func Info(args ...interface{}) {
@@ -192,5 +192,5 @@ func Error(args ...interface{}) {
 		}
 	}
 
-	errlog.Output(0, fmt.Sprintln(args...)+takeStacktrace())
+	errlog.Output(0, fmt.Sprintln(args...)+TakeStacktrace())
 }

@@ -15,7 +15,7 @@ var (
 	}
 )
 
-func takeStacktrace() string {
+func TakeStacktrace() string {
 
 	programCounters := _stacktracePool.Get().(*programCounters)
 	defer _stacktracePool.Put(programCounters)
