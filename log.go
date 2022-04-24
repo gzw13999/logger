@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"runtime"
 	"time"
 )
 
@@ -17,7 +16,6 @@ var (
 	debuglogfile *os.File
 	infologfile  *os.File
 	errlogfile   *os.File
-	newline      string
 	logpath      string
 	date         time.Time
 )
@@ -25,12 +23,6 @@ var (
 func LogInit(path string) {
 
 	date = time.Now()
-
-	if runtime.GOOS == "windows" {
-		newline = "\r\n"
-	} else {
-		newline = ""
-	}
 
 	if path == "" {
 		logpath = "./"
@@ -95,7 +87,7 @@ func Run(args ...interface{}) {
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
 			//			runlog.SetOutput(&r)
-			runlog = log.New(&r, newline, log.LstdFlags)
+			runlog = log.New(&r,"", log.LstdFlags)
 		}
 	}
 
@@ -110,7 +102,7 @@ func Run(args ...interface{}) {
 			var r Repeater
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
-			runlog = log.New(&r, newline, log.LstdFlags)
+			runlog = log.New(&r, "", log.LstdFlags)
 		}
 	}
 
@@ -124,7 +116,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, newline, log.LstdFlags)
+			debuglog = log.New(debuglogfile, "", log.LstdFlags)
 		}
 	}
 
@@ -136,7 +128,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, newline, log.LstdFlags)
+			debuglog = log.New(debuglogfile, "", log.LstdFlags)
 		}
 	}
 
@@ -150,7 +142,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, newline, log.LstdFlags)
+			infolog = log.New(infologfile, "", log.LstdFlags)
 		}
 	}
 
@@ -162,7 +154,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, newline, log.LstdFlags)
+			infolog = log.New(infologfile, "", log.LstdFlags)
 		}
 	}
 
@@ -176,7 +168,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, newline, log.LstdFlags)
+			errlog = log.New(errlogfile, "", log.LstdFlags)
 		}
 	}
 
@@ -188,7 +180,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, newline, log.LstdFlags)
+			errlog = log.New(errlogfile, "", log.LstdFlags)
 		}
 	}
 
