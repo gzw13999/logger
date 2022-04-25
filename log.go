@@ -92,7 +92,7 @@ func Run(args ...interface{}) {
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
 			//			runlog.SetOutput(&r)
-			runlog = log.New(&r,"",log.LstdFlags )
+			runlog = log.New(&r,formatPrefix(),0)
 		}
 	}
 
@@ -107,7 +107,7 @@ func Run(args ...interface{}) {
 			var r Repeater
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
-			runlog = log.New(&r, "", log.LstdFlags)
+			runlog = log.New(&r, formatPrefix(), 0)
 
 		}
 	}
@@ -127,7 +127,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, "", log.LstdFlags)
+			debuglog = log.New(debuglogfile, formatPrefix(), 0)
 		}
 	}
 
@@ -139,7 +139,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, "", log.LstdFlags)
+			debuglog = log.New(debuglogfile, formatPrefix(),0)
 		}
 	}
 
@@ -157,7 +157,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, "", log.LstdFlags)
+			infolog = log.New(infologfile, formatPrefix(), 0)
 		}
 	}
 
@@ -169,7 +169,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, "", log.LstdFlags)
+			infolog = log.New(infologfile, formatPrefix(), 0)
 		}
 	}
 
@@ -187,7 +187,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, "", log.LstdFlags)
+			errlog = log.New(errlogfile, formatPrefix(), 0)
 		}
 	}
 
@@ -199,7 +199,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, "", log.LstdFlags)
+			errlog = log.New(errlogfile, formatPrefix(), 0)
 		}
 	}
 
@@ -208,3 +208,6 @@ func Error(args ...interface{}) {
 }
 
 
+func formatPrefix() string {
+	return fmt.Sprintf("%s ", time.Now().Format("2006/01/02 15:04:05.99"))
+}
