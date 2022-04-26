@@ -112,8 +112,7 @@ func Run(args ...interface{}) {
 		}
 	}
 
-	runlog.Output(2, fmt.Sprint(args...))
-
+	runlog.Output(2, fmt.Sprintln(args...))
 }
 
 func DebugF(format string,a... interface{}){
@@ -143,7 +142,7 @@ func Debug(args ...interface{}) {
 		}
 	}
 
-	debuglog.Output(2, fmt.Sprint(args...)+TakeStacktrace())
+	debuglog.Output(2, fmt.Sprintln(args...)+TakeStacktrace())
 }
 
 func InfoF(format string,a... interface{}){
@@ -173,7 +172,7 @@ func Info(args ...interface{}) {
 		}
 	}
 
-	infolog.Output(2, fmt.Sprint(args...))
+	infolog.Output(2, fmt.Sprintln(args...))
 
 }
 
@@ -204,7 +203,7 @@ func Error(args ...interface{}) {
 	}
 
 
-	errlog.Output(2, fmt.Sprint(args...)+TakeStacktrace())
+	errlog.Output(2, fmt.Sprintln(args...)+TakeStacktrace())
 }
 
 
