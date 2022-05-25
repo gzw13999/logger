@@ -92,7 +92,7 @@ func Run(args ...interface{}) {
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
 			//			runlog.SetOutput(&r)
-			runlog = log.New(&r,formatPrefix(),0)
+			runlog = log.New(&r,"",log.LstdFlags)
 		}
 	}
 
@@ -107,7 +107,7 @@ func Run(args ...interface{}) {
 			var r Repeater
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
-			runlog = log.New(&r, formatPrefix(), 0)
+			runlog = log.New(&r, "",log.LstdFlags)
 
 		}
 	}
@@ -126,7 +126,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, formatPrefix(), 0)
+			debuglog = log.New(debuglogfile, "",log.LstdFlags)
 		}
 	}
 
@@ -138,7 +138,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, formatPrefix(),0)
+			debuglog = log.New(debuglogfile, "",log.LstdFlags)
 		}
 	}
 
@@ -156,7 +156,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, formatPrefix(), 0)
+			infolog = log.New(infologfile, "",log.LstdFlags)
 		}
 	}
 
@@ -168,7 +168,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, formatPrefix(), 0)
+			infolog = log.New(infologfile, "",log.LstdFlags)
 		}
 	}
 
@@ -186,7 +186,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, formatPrefix(), 0)
+			errlog = log.New(errlogfile, "",log.LstdFlags)
 		}
 	}
 
@@ -198,7 +198,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, formatPrefix(), 0)
+			errlog = log.New(errlogfile, "",log.LstdFlags)
 		}
 	}
 
@@ -207,6 +207,6 @@ func Error(args ...interface{}) {
 }
 
 
-func formatPrefix() string {
-	return fmt.Sprintf("%s ", time.Now().Format("2006/01/02 15:04:05.99"))
-}
+//func formatPrefix() string {
+//	return fmt.Sprintf("%s ", time.Now().Format("2006/01/02 15:04:05.99"))
+//}
