@@ -20,8 +20,6 @@ var (
 	date         time.Time
 )
 
-
-
 func LogInit(path string) {
 
 	date = time.Now()
@@ -71,12 +69,12 @@ func LogInit(path string) {
 	Run("log", logpath, "init...")
 }
 
-//func timeSub(t1, t2 time.Time) int {
-//t1 = t1.UTC().Truncate(24 * time.Hour)
-//t2 = t2.UTC().Truncate(24 * time.Hour)
-//return int(t1.Sub(t2).Hours() / 24)
-//}
-func RunF(format string,a... interface{}){
+// func timeSub(t1, t2 time.Time) int {
+// t1 = t1.UTC().Truncate(24 * time.Hour)
+// t2 = t2.UTC().Truncate(24 * time.Hour)
+// return int(t1.Sub(t2).Hours() / 24)
+// }
+func RunF(format string, a ...interface{}) {
 	Run(fmt.Sprintf(format, a...))
 }
 
@@ -92,7 +90,7 @@ func Run(args ...interface{}) {
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
 			//			runlog.SetOutput(&r)
-			runlog = log.New(&r,"",log.LstdFlags)
+			runlog = log.New(&r, "", log.LstdFlags)
 		}
 	}
 
@@ -107,7 +105,7 @@ func Run(args ...interface{}) {
 			var r Repeater
 			r.out1 = os.Stdout
 			r.out2 = runlogfile
-			runlog = log.New(&r, "",log.LstdFlags)
+			runlog = log.New(&r, "", log.LstdFlags)
 
 		}
 	}
@@ -115,7 +113,7 @@ func Run(args ...interface{}) {
 	runlog.Output(2, fmt.Sprintln(args...))
 }
 
-func DebugF(format string,a... interface{}){
+func DebugF(format string, a ...interface{}) {
 	Debug(fmt.Sprintf(format, a...))
 }
 
@@ -126,7 +124,7 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, "",log.LstdFlags)
+			debuglog = log.New(debuglogfile, "", log.LstdFlags)
 		}
 	}
 
@@ -138,14 +136,14 @@ func Debug(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			debuglog = log.New(debuglogfile, "",log.LstdFlags)
+			debuglog = log.New(debuglogfile, "", log.LstdFlags)
 		}
 	}
 
-	debuglog.Output(2, fmt.Sprintln(args...)+TakeStacktrace())
+	debuglog.Output(2, fmt.Sprintln(args...))
 }
 
-func InfoF(format string,a... interface{}){
+func InfoF(format string, a ...interface{}) {
 	Info(fmt.Sprintf(format, a...))
 }
 
@@ -156,7 +154,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, "",log.LstdFlags)
+			infolog = log.New(infologfile, "", log.LstdFlags)
 		}
 	}
 
@@ -168,7 +166,7 @@ func Info(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			infolog = log.New(infologfile, "",log.LstdFlags)
+			infolog = log.New(infologfile, "", log.LstdFlags)
 		}
 	}
 
@@ -176,7 +174,7 @@ func Info(args ...interface{}) {
 
 }
 
-func ErrorF(format string,a... interface{}){
+func ErrorF(format string, a ...interface{}) {
 	Error(fmt.Sprintf(format, a...))
 }
 func Error(args ...interface{}) {
@@ -186,7 +184,7 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, "",log.LstdFlags)
+			errlog = log.New(errlogfile, "", log.LstdFlags)
 		}
 	}
 
@@ -198,14 +196,12 @@ func Error(args ...interface{}) {
 			fmt.Printf("%s\r\n", err.Error())
 			return
 		} else {
-			errlog = log.New(errlogfile, "",log.LstdFlags)
+			errlog = log.New(errlogfile, "", log.LstdFlags)
 		}
 	}
 
-
 	errlog.Output(2, fmt.Sprintln(args...)+TakeStacktrace())
 }
-
 
 //func formatPrefix() string {
 //	return fmt.Sprintf("%s ", time.Now().Format("2006/01/02 15:04:05.99"))
